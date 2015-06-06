@@ -27,11 +27,11 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -48,7 +48,7 @@ public class FcpConnection implements Closeable {
 	public static final int DEFAULT_PORT = 9481;
 
 	/** The list of FCP listeners. */
-	private final List<FcpListener> fcpListeners = new ArrayList<FcpListener>();
+	private final List<FcpListener> fcpListeners = new CopyOnWriteArrayList<FcpListener>();
 
 	/** The address of the node. */
 	private final InetAddress address;
