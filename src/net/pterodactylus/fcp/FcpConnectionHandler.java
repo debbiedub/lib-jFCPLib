@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.util.logging.Logger;
 
 /**
  * Handles an FCP connection to a node.
@@ -30,6 +31,9 @@ import java.nio.charset.Charset;
  * @author David ‘Bombe’ Roden &lt;bombe@freenetproject.org&gt;
  */
 class FcpConnectionHandler implements Runnable {
+
+	/** Logger. */
+	private static final Logger logger = Logger.getLogger(FcpConnectionHandler.class.getName());
 
 	/** The underlying connection. */
 	private final FcpConnection fcpConnection;
@@ -71,7 +75,7 @@ class FcpConnectionHandler implements Runnable {
 			}
 			try {
 				String line = readLine();
-				System.out.println("read line: " + line);
+				logger.fine("read line: " + line);
 				if (line == null) {
 					break;
 				}

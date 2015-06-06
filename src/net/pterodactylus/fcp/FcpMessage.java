@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
 
 /**
  * An FCP message. FCP messages consist of a name, an arbitrary amount of
@@ -36,6 +37,9 @@ import java.util.Map.Entry;
  * @author David ‘Bombe’ Roden &lt;bombe@freenetproject.org&gt;
  */
 public class FcpMessage implements Iterable<String> {
+
+	/** Logger. */
+	private static final Logger logger = Logger.getLogger(FcpMessage.class.getName());
 
 	/** Constant for the linefeed. */
 	private static final String LINEFEED = "\r\n";
@@ -171,6 +175,7 @@ public class FcpMessage implements Iterable<String> {
 		if (payloadInputStream != null) {
 			FcpUtils.copy(payloadInputStream, outputStream);
 			outputStream.flush();
+			logger.fine("sending payload done");
 		}
 	}
 
@@ -190,6 +195,7 @@ public class FcpMessage implements Iterable<String> {
 	 *             if an I/O error occurs
 	 */
 	private void writeLine(OutputStream outputStream, String line) throws IOException {
+		logger.fine("sending line " + line);
 		outputStream.write((line + LINEFEED).getBytes("UTF-8"));
 	}
 
