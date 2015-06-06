@@ -68,4 +68,13 @@ public class SubscribedUSKUpdate extends BaseMessage {
 		return getField("URI");
 	}
 
+	/**
+	 * Returns whether the request returns a new known good.
+	 * 
+	 * @return <code>true</code> if it does, <code>false</code> if it does not.
+	 */
+	public boolean isNewKnownGood() {
+		return Boolean.valueOf(getField("NewKnownGood"));
+	}
+
 }
